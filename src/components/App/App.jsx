@@ -1,21 +1,27 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppHeader, StyledNavLink } from './App.styled';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AppHeader, NavItem } from './App.styled';
 import { Home } from '../Home/Home';
-import { Movies } from '../Movies/Movies';
+import { Movies } from '../../pages/Movies/Movies';
+// import { MovieDetails } from '../../pages/MovieDetails/MovieDetails';
 
 export const App = () => {
   return (
     <>
       <AppHeader>
         <nav>
-          <StyledNavLink to='/'>Home</StyledNavLink>
-          <StyledNavLink to='movies'>Movies</StyledNavLink>
+          <NavItem to='/'>Home</NavItem>
+          <NavItem to='movies'>Movies</NavItem>
         </nav>
       </AppHeader>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='movies' element={<Movies />} />
+        <Route path='/movies' element={<Movies />} />
+        {/* <Route path='/movies/:movieId' element={<MovieDetails />} /> */}
+        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
+      <ToastContainer />
     </>
   );
 };

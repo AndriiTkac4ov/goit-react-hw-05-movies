@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
-export const MoviesSection = styled.section`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: ${props => props.theme.sizes(6)};
+export const MoviesSection = styled.main`
+    padding-top: ${props => props.theme.sizes(2)};
     padding-right: ${props => props.theme.sizes(3)};
     padding-left: ${props => props.theme.sizes(3)};
-    padding-top: ${props => props.theme.sizes(1)};
-    padding-bottom: ${props => props.theme.sizes(1)};
+    padding-bottom: ${props => props.theme.sizes(2)};
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.mainBackground};
 `;
@@ -19,6 +15,8 @@ export const SearchForm = styled.form`
     align-items: center;
     width: 100%;
     max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: ${props => props.theme.colors.white};
     border-radius: ${props => props.theme.radii.normal};
     overflow: hidden;

@@ -22,22 +22,23 @@ export const AppHeader = styled.header`
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
-export const StyledNavLink = styled(NavLink)`
+export const NavItem = styled(NavLink)`
     font-size: ${props => props.theme.fontSizes.m}px;
     font-weight: ${props => props.theme.fontWeights.bold};
     text-decoration: none;
     color: black;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:not(:last-child) {
             margin-right: ${props => props.theme.sizes(6)};
         }
 
-    &.active {
-        color: #ea332c;
-    }
-
     &:hover,
     &:focus {
         color: #713333;
+    }
+
+    &.active {
+        color: #ea332c;
     }
 `;

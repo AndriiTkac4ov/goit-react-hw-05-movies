@@ -2,8 +2,8 @@ import {  } from "./Home.styled";
 
 export const Home = () => {
     return (
-        <div>
-            <p>Where are my popular movies?</p>
-        </div>
+        <main>
+            <h2>Trending today</h2>
+        </main>
     )
 }
