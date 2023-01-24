@@ -38,15 +38,15 @@ export const Home = () => {
             <SectionTitle>Trending today</SectionTitle>
             {isLoading && <Loader />}
             {!isLoading && moviesInTrend?.length !== 0 &&
-            <ul>
+            <ol>
                 {moviesInTrend?.map(({ id, title}) => (
                     <li key={id}>
-                        <Link to={id}>
+                        <Link to={`movies/${id}`}>
                             {title}
                         </Link>
                     </li>
                 ))}
-            </ul>}
+            </ol>}
         </MoviesTrendSection>
     )
 }

@@ -1,8 +1,33 @@
 import { useFetchDetails } from '../../hooks/UseFetchDetails';
+// import { useState, useEffect } from "react";
+// import { useParams } from 'react-router-dom';
+// import api from '../../services/api';
 
 export const MovieDetails = () => {
+    // const [movie, setMovie] = useState(null);
+    // const { movieId } = useParams();
+
     const movie = useFetchDetails();
     console.log(movie);
+
+    // useEffect(() => {
+    //     const getMoviesInTrend = async () => {
+    //         try {
+    //             // setIsLoading(true);
+
+    //             let movie = await api.fetchMovieById(Number(movieId));
+                
+    //             setMovie(movie);
+    //         } catch (error) {
+    //             console.log(error);
+    //             // setIsError(true);
+    //         } finally {
+    //             // setIsLoading(false);
+    //         }
+    //     }
+
+    //     getMoviesInTrend();
+    // }, [movieId])
 
     return (
         <> {movie &&

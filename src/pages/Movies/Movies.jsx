@@ -1,6 +1,6 @@
 import { MoviesSection, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Movies.styled";
 import { useState, useEffect } from 'react';
-import { useSearchParams, Link, Outlet } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 // import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
 import { Loader } from "../../components/Loader/Loader";
@@ -74,16 +74,15 @@ export const Movies = () => {
 
             {isLoading && <Loader />}
             {!isLoading && movies?.length !== 0 &&
-            <ul>
+            <ol>
                 {movies?.map(({ id, title}) => (
                     <li key={id}>
-                        <Link to={id}>
+                        <Link to={`${id}`}>
                             {title}
                         </Link>
                     </li>
                 ))}
-            </ul>}
-            <Outlet />
+            </ol>}
         </MoviesSection>
     )
 }
