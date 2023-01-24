@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const MoviesSection = styled.main`
+export const MoviesSection = styled.section`
     padding-top: ${props => props.theme.sizes(2)};
     padding-right: ${props => props.theme.sizes(3)};
     padding-left: ${props => props.theme.sizes(3)};
     padding-bottom: ${props => props.theme.sizes(2)};
     color: ${props => props.theme.colors.white};
-    background-color: ${props => props.theme.colors.mainBackground};
+    background-color: ${props => props.theme.colors.moviesBackground};
 `;
 
 export const SearchForm = styled.form`

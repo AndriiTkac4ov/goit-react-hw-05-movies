@@ -1,9 +1,12 @@
 export const theme = {
     colors: {
         white: '#fff',
-        mainBackground: '#cedfe0',
+        homeBackground: '#ecd4ff',
+        moviesBackground: '#cedfe0',
         primaryVertical: '#8eb53f',
         secondaryVertical: '#ffd180',
+        inFocusColor: '#713333',
+        activeColor: '#ea332c',
     },
     sizes: value => `${8 * value}px`,
     fontSizes: {

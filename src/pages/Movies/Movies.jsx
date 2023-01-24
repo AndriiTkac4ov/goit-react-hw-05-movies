@@ -1,29 +1,29 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-import api from '../../services/api';
 import { MoviesSection, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Movies.styled";
+import { useState, useEffect } from 'react';
+import { useSearchParams, Link, Outlet } from 'react-router-dom';
+// import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+import { Loader } from "../../components/Loader/Loader";
+import api from '../../services/api';
 
 export const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    // const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     // const [isError, setIsError] = useState(false);
 
-    const searchMovie = searchParams.get("searchMovie");
+    const query = searchParams.get("query");
 
     useEffect(() => {
-        if (searchMovie === '') {
+        if (query === '') {
             return;
         };
 
         const getMovies = async () => {
             try {
-                // setIsLoading(true);
+                setIsLoading(true);
 
-                let movies = await api.fetchMovies(searchMovie);
+                let movies = await api.fetchMoviesBySearch(query);
                 movies = movies.map(movie => {
                     return movie = {
                         id: movie.id,
@@ -35,29 +35,25 @@ export const Movies = () => {
                 console.log(error);
                 // setIsError(true);
             } finally {
-                // setIsLoading(false);
+                setIsLoading(false);
             }
         }
 
         getMovies();
-    }, [searchMovie])
+    }, [query])
 
     const handleSubmit = event => {
         event.preventDefault();
 
-        if (searchMovie.trim() === '') {
-            toast.warn("Searchign form is empty! Please input some text.");
-            return;
-        }
+        // if (query.trim() === '') {
+        //     toast.warn("Searchign form is empty! Please input some text.");
+        //     return;
+        // }
 
         const form = event.currentTarget;
-        setSearchParams({ searchMovie: form.elements.searchMovie.value.toLowerCase() });
-        // reset();
+        setSearchParams({ query: form.elements.query.value.toLowerCase() });
+        form.reset();
     }
-
-    // const reset = () => {
-    //     setMovies([])
-    // }
 
     return (
         <MoviesSection>
@@ -69,19 +65,25 @@ export const Movies = () => {
 
                 <SearchFormInput
                     type="text"
-                    name="searchMovie"
+                    name="query"
                     autocomplete="off"
                     autoFocus
                     placeholder="Search movies"
                 />
             </SearchForm>
 
-            {movies?.length !== 0 &&
+            {isLoading && <Loader />}
+            {!isLoading && movies?.length !== 0 &&
             <ul>
-                {movies?.map((movie) => (
-                    <li key={movie.id}>Title = {movie.title}</li>
+                {movies?.map(({ id, title}) => (
+                    <li key={id}>
+                        <Link to={id}>
+                            {title}
+                        </Link>
+                    </li>
                 ))}
             </ul>}
+            <Outlet />
         </MoviesSection>
     )
 }
