@@ -33,32 +33,8 @@ export const fetchMovieById = async (id) => {
         },
     });
 
-    console.log(response.data);
     return response.data;
 }
-
-// export async function fetchMovieById (id) {
-//     const response = await moviesAPI.get(`/movie/${id}?`, {
-//         params: {
-//             api_key: API_KEY,
-//         },
-//     });
-
-//     console.log(response.data);
-//     return response.data;
-// }
-
-// export async function fetchMovieById (id) {
-//     const response = await moviesAPI.get(`/movie/${id}?`, {
-//         params: {
-//             // id: id,
-//             api_key: API_KEY,
-//         },
-//     });
-
-//     console.log(response.data);
-//     return response.data;
-// }
 
 const api = {
     fetchMoviesByTrend,
