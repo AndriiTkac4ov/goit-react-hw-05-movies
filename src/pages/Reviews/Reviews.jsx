@@ -1,8 +1,8 @@
 import { useFetchReviews } from '../../hooks/UseFetchReviews';
+import { formatReviewDate } from '../../utils/formatReviewDate';
 
 export const Reviews = () => {
     const reviews = useFetchReviews();
-    console.log(reviews);
 
     return (
         <> {reviews &&
@@ -10,7 +10,7 @@ export const Reviews = () => {
                 {reviews.map(({ id, author, updated_at, content }) => (
                     <li key={id}>
                         <h5>Author: {author}</h5>
-                        <time dateTime={updated_at}>{updated_at}</time>
+                        <time dateTime={updated_at}>{formatReviewDate(updated_at)}</time>
                         <p>{content}</p>
                     </li>
                 ))}
