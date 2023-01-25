@@ -1,7 +1,7 @@
 export const theme = {
     colors: {
         white: '#fff',
-        homeBackground: '#ecd4ff',
+        homeBackground: '#ffd180',
         moviesBackground: '#cedfe0',
         primaryVertical: '#8eb53f',
         secondaryVertical: '#ffd180',

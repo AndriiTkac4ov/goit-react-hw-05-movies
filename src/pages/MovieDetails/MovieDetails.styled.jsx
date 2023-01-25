@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-export const DetailsItem = styled(NavLink)`
+export const DetailLink = styled(NavLink)`
     font-size: ${props => props.theme.fontSizes.m}px;
     font-weight: ${props => props.theme.fontWeights.bold};
     text-decoration: none;

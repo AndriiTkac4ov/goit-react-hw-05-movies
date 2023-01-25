@@ -1,18 +1,20 @@
 import { MoviesSection, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Movies.styled";
 import { useState, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
-// import { toast } from 'react-toastify';
+import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { Loader } from "../../components/Loader/Loader";
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 
 export const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
-    // const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const query = searchParams.get("query");
+
+    const location = useLocation();
 
     useEffect(() => {
         if (query === '') {
@@ -27,13 +29,13 @@ export const Movies = () => {
                 movies = movies.map(movie => {
                     return movie = {
                         id: movie.id,
-                        title: movie.original_title,
+                        title: movie.title,
                     }
                 });
                 setMovies(movies);
             } catch (error) {
                 console.log(error);
-                // setIsError(true);
+                setIsError(true);
             } finally {
                 setIsLoading(false);
             }
@@ -74,15 +76,18 @@ export const Movies = () => {
 
             {isLoading && <Loader />}
             {!isLoading && movies?.length !== 0 &&
-            <ol>
-                {movies?.map(({ id, title}) => (
-                    <li key={id}>
-                        <Link to={`${id}`}>
-                            {title}
-                        </Link>
-                    </li>
-                ))}
-            </ol>}
+                <ol>
+                    {movies?.map(({ id, title}) => (
+                        <li key={id}>
+                            <Link state={{from: location}} to={`${id}`}>
+                                {title}
+                            </Link>
+                        </li>
+                    ))}
+                </ol>
+            }
+            
+            {isError && toast.error("We have error.")}
         </MoviesSection>
     )
 }

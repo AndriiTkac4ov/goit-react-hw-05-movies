@@ -2,12 +2,13 @@ import { MoviesTrendSection, SectionTitle } from "./Home.styled";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 
 export const Home = () => {
     const [moviesInTrend, setMoviesInTrend] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    // const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         const getMoviesInTrend = async () => {
@@ -18,13 +19,13 @@ export const Home = () => {
                 moviesInTrend = moviesInTrend.map(movie => {
                     return movie = {
                         id: movie.id,
-                        title: movie.original_title,
+                        title: movie.title,
                     }
                 });
                 setMoviesInTrend(moviesInTrend);
             } catch (error) {
                 console.log(error);
-                // setIsError(true);
+                setIsError(true);
             } finally {
                 setIsLoading(false);
             }
@@ -38,15 +39,18 @@ export const Home = () => {
             <SectionTitle>Trending today</SectionTitle>
             {isLoading && <Loader />}
             {!isLoading && moviesInTrend?.length !== 0 &&
-            <ol>
-                {moviesInTrend?.map(({ id, title}) => (
-                    <li key={id}>
-                        <Link to={`movies/${id}`}>
-                            {title}
-                        </Link>
-                    </li>
-                ))}
-            </ol>}
+                <ol>
+                    {moviesInTrend?.map(({ id, title}) => (
+                        <li key={id}>
+                            <Link to={`movies/${id}`}>
+                                {title}
+                            </Link>
+                        </li>
+                    ))}
+                </ol>
+            }
+            
+            {isError && toast.error("We have error.")}
         </MoviesTrendSection>
     )
 }

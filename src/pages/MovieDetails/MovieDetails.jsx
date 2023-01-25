@@ -1,15 +1,20 @@
 import { useFetchDetails } from '../../hooks/UseFetchDetails';
-import { DetailsItem } from './MovieDetails.styled';
-import { Outlet } from 'react-router-dom';
+import { DetailLink } from './MovieDetails.styled';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 
 export const MovieDetails = () => {
     const movie = useFetchDetails();
     const posterPathBase = 'https://image.tmdb.org/t/p/w500';
 
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    console.log(location);
+
     return (
         <> {movie &&
             <section>
-                <button type='button'>Go back</button>
+                <button type='button' onClick={()=>navigate(location?.state?.from ?? '/')}>Go back</button>
                 <div>
                     <img src={posterPathBase + movie.poster_path} alt={movie.title} width={400}/>
                     <h3>{movie.original_title} ({movie.release_date.slice(0, 4)})</h3>
@@ -22,8 +27,8 @@ export const MovieDetails = () => {
                 <div>
                     <h4>Additional information</h4>
                     <ul>
-                        <li><DetailsItem to='cast'>Cast</DetailsItem></li>
-                        <li><DetailsItem to='reviews'>Reviews</DetailsItem></li>
+                        <li><DetailLink state={{from: location}} to='cast'>Cast</DetailLink></li>
+                        <li><DetailLink state={{from: location}} to='reviews'>Reviews</DetailLink></li>
                     </ul>
                 </div>
                 <div>

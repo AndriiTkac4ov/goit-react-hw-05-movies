@@ -3,7 +3,6 @@ import { useFetchCast } from '../../hooks/UseFetchCast';
 export const Cast = () => {
     const cast = useFetchCast();
     const posterPathBase = 'https://image.tmdb.org/t/p/w500';
-    console.log(cast);
 
     return (
         <> {cast &&
