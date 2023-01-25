@@ -1,5 +1,4 @@
 import { useFetchCast } from '../../hooks/UseFetchCast';
-// import { DetailsItem } from './MovieDetails.styled';
 
 export const Cast = () => {
     const cast = useFetchCast();
