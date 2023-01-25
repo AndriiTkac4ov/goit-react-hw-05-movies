@@ -36,10 +36,32 @@ export const fetchMovieById = async (id) => {
     return response.data;
 }
 
+export const fetchMovieCast = async (id) => {
+    const response = await moviesAPI.get(`/movie/${id}/credits?`, {
+        params: {
+            api_key: API_KEY,
+        },
+    });
+
+    return response.data.cast;
+}
+
+export const fetchMovieReviews = async (id) => {
+    const response = await moviesAPI.get(`/movie/${id}/reviews?`, {
+        params: {
+            api_key: API_KEY,
+        },
+    });
+
+    return response.data;
+}
+
 const api = {
     fetchMoviesByTrend,
     fetchMoviesBySearch,
     fetchMovieById,
+    fetchMovieCast,
+    fetchMovieReviews,
 }
 
 export default api;

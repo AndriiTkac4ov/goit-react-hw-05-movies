@@ -1,5 +1,6 @@
 import { useFetchDetails } from '../../hooks/UseFetchDetails';
-import { NavLink } from 'react-router-dom';
+import { DetailsItem } from './MovieDetails.styled';
+import { Outlet } from 'react-router-dom';
 
 export const MovieDetails = () => {
     const movie = useFetchDetails();
@@ -21,9 +22,12 @@ export const MovieDetails = () => {
                 <div>
                     <h4>Additional information</h4>
                     <ul>
-                        <li><NavLink to='/cast'>Cast</NavLink></li>
-                        <li><NavLink to='/reviews'>Reviews</NavLink></li>
+                        <li><DetailsItem to='cast'>Cast</DetailsItem></li>
+                        <li><DetailsItem to='reviews'>Reviews</DetailsItem></li>
                     </ul>
+                </div>
+                <div>
+                    <Outlet />
                 </div>
             </section>
         }</>
