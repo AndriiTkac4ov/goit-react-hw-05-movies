@@ -9,7 +9,7 @@ export const Reviews = () => {
             <ul>
                 {reviews.map(({ id, author, updated_at, content }) => (
                     <li key={id}>
-                        <h5>Author: {author}</h5>
+                        <h4>Author: {author}</h4>
                         <time dateTime={updated_at}>{formatReviewDate(updated_at)}</time>
                         <p>{content}</p>
                     </li>

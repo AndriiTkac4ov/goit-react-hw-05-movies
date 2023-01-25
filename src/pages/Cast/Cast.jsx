@@ -11,7 +11,7 @@ export const Cast = () => {
                 {cast.map(({ cast_id, character, name, profile_path }) => (
                     <li key={cast_id}>
                         <img src={posterPathBase + profile_path} alt={name} width={200}/>
-                        <h5>{name}</h5>
+                        <h4>{name}</h4>
                         <p>Character: {character}</p>
                     </li>
                 ))}
