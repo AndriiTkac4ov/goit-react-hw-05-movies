@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const MoviesSection = styled.section`
     padding-top: ${props => props.theme.sizes(2)};
-    padding-right: ${props => props.theme.sizes(3)};
-    padding-left: ${props => props.theme.sizes(3)};
+    padding-right: ${props => props.theme.sizes(8)};
+    padding-left: ${props => props.theme.sizes(8)};
     padding-bottom: ${props => props.theme.sizes(2)};
-    color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.moviesBackground};
 `;
 
+// for SearchForm part
 export const SearchForm = styled.form`
     display: flex;
     justify-content: center;
@@ -66,5 +67,27 @@ export const SearchFormInput = styled.input`
     &::placeholder {
         font: inherit;
         font-size: ${props => props.theme.fontSizes.s}px;
+    }
+`;
+
+// for Movies part
+export const MoviesList = styled.ol`
+    margin: 0;
+    padding: 0;
+`;
+
+export const MovieItem = styled.li`
+    color: ${props => props.theme.colors.textColor};
+`;
+
+export const MovieLink = styled(Link)`
+    text-decoration: none;
+    margin-left: ${props => props.theme.sizes(1)};
+    color: ${props => props.theme.colors.textColor};
+
+    &:hover,
+    &:focus {
+        color: ${props => props.theme.colors.inFocusMovieColor};
+        text-decoration: underline ${props => props.theme.colors.inFocusMovieColor};
     }
 `;

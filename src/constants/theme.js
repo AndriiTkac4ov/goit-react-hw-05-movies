@@ -1,12 +1,15 @@
 export const theme = {
     colors: {
         white: '#fff',
-        homeBackground: '#ffd180',
+        black: '#000',
+        homeBackground: '#fff4e0',
         moviesBackground: '#cedfe0',
-        primaryVertical: '#8eb53f',
-        secondaryVertical: '#ffd180',
-        inFocusColor: '#713333',
+        primaryVertical: '#f26f6a',
+        secondaryVertical: '#fff4e0',
         activeColor: '#ea332c',
+        inFocusColor: '#1172c0',
+        inFocusMovieColor: '#ea332c',
+        textColor: '#713333',
     },
     sizes: value => `${8 * value}px`,
     fontSizes: {
@@ -27,10 +30,11 @@ export const theme = {
     borders: {
         none: 'none',
         normal: '1px solid',
+        double: '2px double',
     },
     radii: {
         none: '0',
-        normal: '4px',
+        normal: '6px',
         round: '50%',
     },
 }

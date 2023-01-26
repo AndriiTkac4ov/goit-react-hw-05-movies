@@ -1,6 +1,11 @@
-import { MoviesTrendSection, SectionTitle } from "./Home.styled";
+import {
+    TrendMoviesSection,
+    TrendSectionTitle,
+    TrendMoviesList,
+    TrendMovieItem,
+    TrendMovieLink
+} from "./Home.styled";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from 'react-toastify';
 import api from '../../services/api';
@@ -35,22 +40,22 @@ export const Home = () => {
     }, [])
 
     return (
-        <MoviesTrendSection>
-            <SectionTitle>Trending today</SectionTitle>
+        <TrendMoviesSection>
+            <TrendSectionTitle>Trending today</TrendSectionTitle>
             {isLoading && <Loader />}
             {!isLoading && moviesInTrend?.length !== 0 &&
-                <ol>
+                <TrendMoviesList>
                     {moviesInTrend?.map(({ id, title}) => (
-                        <li key={id}>
-                            <Link to={`movies/${id}`}>
+                        <TrendMovieItem key={id}>
+                            <TrendMovieLink to={`movies/${id}`}>
                                 {title}
-                            </Link>
-                        </li>
+                            </TrendMovieLink>
+                        </TrendMovieItem>
                     ))}
-                </ol>
+                </TrendMoviesList>
             }
             
             {isError && toast.error("We have error.")}
-        </MoviesTrendSection>
+        </TrendMoviesSection>
     )
 }

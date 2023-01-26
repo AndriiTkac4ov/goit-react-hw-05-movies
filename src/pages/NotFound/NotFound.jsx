@@ -1,11 +1,16 @@
+import {
+    NotFoundSection,
+    NotFoundImg,
+    NotFoundText,
+    NotFoundLink,
+} from './NotFound.styled';
 import image from './not-found.gif';
-import { NotFoundSection, NotFoundImg, NotFoundLink } from './NotFound.styled';
 
 export function NotFound() {
     return (
         <NotFoundSection>
             <NotFoundImg src={image} alt="Wrong page in URL adress" />
-            <p>Opsss! This page doesn't exist.</p>
+            <NotFoundText>Opsss! This page doesn't exist.</NotFoundText>
             <NotFoundLink to="/">Open home page</NotFoundLink>
         </NotFoundSection>
     )

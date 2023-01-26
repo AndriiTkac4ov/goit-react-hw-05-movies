@@ -1,6 +1,15 @@
-import { MoviesSection, SearchForm, SearchFormButton, SearchFormButtonLabel, SearchFormInput } from "./Movies.styled";
+import {
+    MoviesSection,
+    SearchForm,
+    SearchFormButton,
+    SearchFormButtonLabel,
+    SearchFormInput,
+    MoviesList,
+    MovieItem,
+    MovieLink,
+} from "./Movies.styled";
 import { useState, useEffect } from 'react';
-import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from 'react-toastify';
@@ -76,15 +85,15 @@ export const Movies = () => {
 
             {isLoading && <Loader />}
             {!isLoading && movies?.length !== 0 &&
-                <ol>
+                <MoviesList>
                     {movies?.map(({ id, title}) => (
-                        <li key={id}>
-                            <Link state={{from: location}} to={`${id}`}>
+                        <MovieItem key={id}>
+                            <MovieLink state={{from: location}} to={`${id}`}>
                                 {title}
-                            </Link>
-                        </li>
+                            </MovieLink>
+                        </MovieItem>
                     ))}
-                </ol>
+                </MoviesList>
             }
             
             {isError && toast.error("We have error.")}

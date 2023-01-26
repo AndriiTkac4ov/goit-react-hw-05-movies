@@ -1,3 +1,10 @@
+import {
+    ReviewsList,
+    ReviewItem,
+    ReviewAuthor,
+    ReviewData,
+    ReviewText,
+} from './Reviews.styled';
 import { useFetchReviews } from '../../hooks/UseFetchReviews';
 import { formatReviewDate } from '../../utils/formatReviewDate';
 
@@ -6,15 +13,15 @@ export const Reviews = () => {
 
     return (
         <> {reviews &&
-            <ul>
+            <ReviewsList>
                 {reviews.map(({ id, author, updated_at, content }) => (
-                    <li key={id}>
-                        <h4>Author: {author}</h4>
-                        <time dateTime={updated_at}>{formatReviewDate(updated_at)}</time>
-                        <p>{content}</p>
-                    </li>
+                    <ReviewItem key={id}>
+                        <ReviewAuthor>Author: {author}</ReviewAuthor>
+                        <ReviewData dateTime={updated_at}>{formatReviewDate(updated_at)}</ReviewData>
+                        <ReviewText>{content}</ReviewText>
+                    </ReviewItem>
                 ))}
-            </ul>
+            </ReviewsList>
         }</>
     )
 }
