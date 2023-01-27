@@ -21,7 +21,7 @@ export const Movies = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    const query = searchParams.get("query");
+    const query = searchParams.get("query") ?? "";
 
     const location = useLocation();
 
@@ -55,14 +55,15 @@ export const Movies = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-
-        // if (query.trim() === '') {
-        //     toast.warn("Searchign form is empty! Please input some text.");
-        //     return;
-        // }
-
+        
         const form = event.currentTarget;
         setSearchParams({ query: form.elements.query.value.toLowerCase() });
+
+        if (query.trim() === '') {
+            toast.warn("Searchign form is empty! Please input some text.");
+            return;
+        }
+
         form.reset();
     }
 
