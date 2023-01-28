@@ -11,14 +11,12 @@ import {
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import { Loader } from "../../components/Loader/Loader";
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 
-export const Movies = () => {
+const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
     const query = searchParams.get("query") ?? "";
@@ -32,8 +30,6 @@ export const Movies = () => {
 
         const getMovies = async () => {
             try {
-                setIsLoading(true);
-
                 let movies = await api.fetchMoviesBySearch(query);
                 movies = movies.map(movie => {
                     return movie = {
@@ -45,8 +41,6 @@ export const Movies = () => {
             } catch (error) {
                 console.log(error);
                 setIsError(true);
-            } finally {
-                setIsLoading(false);
             }
         }
 
@@ -84,8 +78,7 @@ export const Movies = () => {
                 />
             </SearchForm>
 
-            {isLoading && <Loader />}
-            {!isLoading && movies?.length !== 0 &&
+            {movies?.length !== 0 &&
                 <MoviesList>
                     {movies?.map(({ id, title}) => (
                         <MovieItem key={id}>
@@ -101,3 +94,5 @@ export const Movies = () => {
         </MoviesSection>
     )
 }
+
+export default Movies;

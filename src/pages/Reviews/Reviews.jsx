@@ -8,7 +8,7 @@ import {
 import { useFetchReviews } from '../../hooks/UseFetchReviews';
 import { formatReviewDate } from '../../utils/formatReviewDate';
 
-export const Reviews = () => {
+const Reviews = () => {
     const reviews = useFetchReviews();
 
     return (
@@ -28,3 +28,5 @@ export const Reviews = () => {
         </>
     )
 }
+
+export default Reviews;

@@ -6,20 +6,16 @@ import {
     TrendMovieLink
 } from "./Home.styled";
 import { useState, useEffect } from "react";
-import { Loader } from "../../components/Loader/Loader";
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 
-export const Home = () => {
+const Home = () => {
     const [moviesInTrend, setMoviesInTrend] = useState();
-    const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
         const getMoviesInTrend = async () => {
             try {
-                setIsLoading(true);
-
                 let moviesInTrend = await api.fetchMoviesByTrend();
                 moviesInTrend = moviesInTrend.map(movie => {
                     return movie = {
@@ -31,8 +27,6 @@ export const Home = () => {
             } catch (error) {
                 console.log(error);
                 setIsError(true);
-            } finally {
-                setIsLoading(false);
             }
         }
 
@@ -42,8 +36,7 @@ export const Home = () => {
     return (
         <TrendMoviesSection>
             <TrendSectionTitle>Trending today</TrendSectionTitle>
-            {isLoading && <Loader />}
-            {!isLoading && moviesInTrend?.length !== 0 &&
+            {moviesInTrend?.length !== 0 &&
                 <TrendMoviesList>
                     {moviesInTrend?.map(({ id, title}) => (
                         <TrendMovieItem key={id}>
@@ -59,3 +52,5 @@ export const Home = () => {
         </TrendMoviesSection>
     )
 }
+
+export default Home;

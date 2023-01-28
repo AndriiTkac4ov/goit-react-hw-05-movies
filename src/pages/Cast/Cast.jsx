@@ -6,13 +6,13 @@ import {
 import imageNotFound from './image-not-found.jpeg';
 import { useFetchCast } from '../../hooks/UseFetchCast';
 
-export const Cast = () => {
+const Cast = () => {
     const cast = useFetchCast();
     const posterPathBase = 'https://image.tmdb.org/t/p/w500';
 
     return (
         <>
-            {cast?.length === 0 && <p>Sorry, there are not actors and actress.</p>}
+            {cast?.length === 0 && <p>Sorry, there are not information about actors and actress.</p>}
             {cast &&
                 <CastList>
                     {cast.map(({ cast_id, character, name, profile_path }) => (
@@ -27,3 +27,5 @@ export const Cast = () => {
         </>
     )
 }
+
+export default Cast;
